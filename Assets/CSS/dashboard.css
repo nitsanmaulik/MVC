@@ -1,0 +1,155 @@
+/* Full-screen background */
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    background: transparent;
+    padding: 12px;
+    box-shadow: none;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 26px;
+    color: white !important;
+    letter-spacing: 1px;
+}
+
+.navbar .btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar .btn:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Dashboard container */
+.container {
+    max-width: 1100px;
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+    color: #333;
+}
+
+/* Table styling */
+.table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-transform: uppercase;
+    padding: 12px;
+}
+
+.table td {
+    color: #333;
+    padding: 12px;
+    vertical-align: middle;
+}
+
+/* Buttons */
+.btn-purple {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.btn-purple:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: scale(1.05);
+}
+
+/* Fix button layout inside task table */
+.task-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Update button styling */
+.update-btn {
+    background: #ff9800 !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.update-btn:hover {
+    background: #e68900 !important;
+    transform: scale(1.05);
+}
+
+/* Delete button styling */
+.delete-btn {
+    background: #dc3545 !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #c82333 !important;
+    transform: scale(1.05);
+}
+
+
+/* Badge styling */
+.badge {
+    font-size: 14px;
+    padding: 6px 12px;
+    text-transform: capitalize;
+}
+
+.badge-success {
+    background: #28a745;
+}
+
+.badge-warning {
+    background: #ffcc00;
+    color: black;
+}
+
+.badge-secondary {
+    background: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    .task-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

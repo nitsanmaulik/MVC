@@ -29,10 +29,13 @@ $tasks = $conn->query("SELECT * FROM tasks WHERE assigned_to = $employeeId");
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-        <h2>Employee Dashboard</h2>
-            <a href="edit_profile.php" class="btn btn-warning">Edit Profile</a>
-            <button class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>
+
+        <div class="container d-flex justify-content-between align-items-center">
+            <h2>Employee dashboard</h2>
+            <div>
+                <a href="edit_profile.php" class="btn btn-warning">Edit Profile</a>
+                <button class="btn btn-danger" onclick="window.location.href='logout.php'">Logout</button>
+            </div>
         </div>
     </nav>
 

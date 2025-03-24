@@ -60,7 +60,7 @@ $myTasks = $conn->query("
 
     <div class="container mt-4">
         <div class="container">
-            <h2><img src="<?php echo $_SESSION['photo'] ?>" alt="profile photo" class="rounded-circle" width="100">
+            <h2><img src="../<?php echo $_SESSION['photo'] ?>" alt="profile photo" class="rounded-circle" width="100">
             Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?> (Team Leader)</h2>
         </div>
         <!-- Assign Task Form -->
@@ -172,7 +172,7 @@ $myTasks = $conn->query("
                                     </td>
                                     <td>
                                     <!-- Update Progress Form (Does Not Redirect to Update Task Page) -->
-                                    <form action="update_task_progress.php" method="POST" class="d-inline">
+                                    <form action="update_task_progress_team_leader.php" method="POST" class="d-inline">
                                         <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
                                         <select name="status" class="form-select d-inline w-auto">
                                             <option value="pending" <?php echo ($task['status'] == 'pending') ? 'selected' : ''; ?>>Pending</option>

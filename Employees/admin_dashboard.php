@@ -33,8 +33,11 @@ $tasks = $conn->query("
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <h2>Admin Dashboard</h2>
-            <button class="btn btn-danger" id="logoutButton">Logout</button>
-
+            <div>
+                <a href="manage_employees.php" class="btn btn-info">Manage Employees</a>
+                <a href="edit_admin_profile.php" class="btn btn-info">Edit Profile</a>
+                <button class="btn btn-danger" id="logoutButton">Logout</button>
+            </div>
         </div>
     </nav>
 
@@ -140,6 +143,7 @@ $tasks = $conn->query("
                         <th>Description</th>
                         <th>Assigned To</th>
                         <th>Status</th>
+                        <th>Update Progress</th>
                         <th>Operations</th>
                     </tr>
                 </thead>
@@ -153,6 +157,18 @@ $tasks = $conn->query("
                                 <span class="badge bg-<?php echo ($task['status'] == 'completed') ? 'success' : (($task['status'] == 'in_progress') ? 'warning' : 'secondary'); ?>">
                                     <?php echo htmlspecialchars($task['status']); ?>
                                 </span>
+                            </td>
+                            <td>
+                                
+                                <form action="update_task_progress_admin.php" method="POST">
+                                    <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
+                                    <select name="status" class="form-select">
+                                        <option value="pending" <?php echo ($task['status'] == 'pending') ? 'selected' : ''; ?>>Pending</option>
+                                        <option value="in_progress" <?php echo ($task['status'] == 'in_progress') ? 'selected' : ''; ?>>In Progress</option>
+                                        <option value="completed" <?php echo ($task['status'] == 'completed') ? 'selected' : ''; ?>>Completed</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-success btn-sm mt-2">Update</button>
+                                </form>
                             </td>
                             <td class="task-buttons">
                                 <!-- Update Task -->

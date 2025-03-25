@@ -99,7 +99,7 @@ $tasks = $conn->query("SELECT * FROM tasks WHERE assigned_to = $employeeId");
             });
         }
     });
-</script>
+    </script>
 
 </body>
 </html>

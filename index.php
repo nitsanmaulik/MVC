@@ -1,6 +1,11 @@
 <?php
 session_start();
 include 'Config/config.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/vendor/autoload.php'; 
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST["name"]);
@@ -13,13 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle Image Upload
     $photo_path = null;
     if (!empty($_FILES["photo"]["name"])) {
-        $upload_dir = __DIR__ . "/Assets/Images/"; // Absolute path to the folder
+        $upload_dir = "Assets/Images/";
         $photo_name = time() . "_" . basename($_FILES["photo"]["name"]);
         $target_file = $upload_dir . $photo_name;
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $file_size = $_FILES["photo"]["size"];
 
-        // Validate file type (only JPG, PNG, JPEG allowed)
+        // Validate file type
         $allowed_types = ["jpg", "jpeg", "png"];
         if (!in_array($file_type, $allowed_types)) {
             die("Error: Only JPG, JPEG, and PNG files are allowed.");
@@ -30,24 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Error: File size must be 2MB or less.");
         }
 
-        // Ensure directory exists
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
-
-        // Move file to directory
+        // Move uploaded file
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            $photo_path = "Assets/Images/" . $photo_name; // Store relative path
+            $photo_path = $target_file;
         } else {
             die("Error uploading file.");
         }
     }
 
-    // Insert user into the database
+    // Insert user into database
     $stmt = $conn->prepare("INSERT INTO employees (name, email, password, phone, qualification, role, photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssss", $name, $email, $password, $phone, $qualification, $role, $photo_path);
 
     if ($stmt->execute()) {
+        sendRegistrationEmail($email, $name, $_POST["password"]); // Send email notification
         header('Location: login.php');
         exit();
     } else {
@@ -57,7 +58,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 }
+
+// **Function to Send Email**
+function sendRegistrationEmail($email, $name, $plainPassword) {
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; 
+        $mail->SMTPAuth = true;
+        $mail->Username = 'maulikkikani.nitsan@gmail.com'; 
+        $mail->Password = 'megi ytyu egfo ntpy'; 
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPDebug = 2; 
+        $mail->Debugoutput = 'html'; // Show debug output in HTML
+        $mail->Port = 587;
+        // Enable Debugging
+        $mail->SMTPDebug = 2; 
+        $mail->Debugoutput = 'html';
+
+        // Email Settings
+        $mail->setFrom('maulikkikani.nitsan@gmail.com', 'NITSAN');
+        $mail->addAddress($email,$name );
+        $mail->Subject = 'Welcome to Our Company!';
+        $mail->isHTML(true);
+        $mail->Body = "
+            <h3>Dear $name,</h3>
+            <p>Congratulations! Your account has been created.</p>
+            <p><b>Email:</b> $email</p>
+            <p><b>Password:</b> $plainPassword</p>
+            <p>You can now log in to your account.</p>
+            <br>
+            <p>Best Regards,</p>
+            <p>NITSAN</p>
+        ";
+
+        // Send email
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Email could not be sent. Error: {$mail->ErrorInfo}";
+    }
+}
 ?>
+
+
 
 
 

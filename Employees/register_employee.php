@@ -85,7 +85,7 @@ function sendRegistrationEmail($email, $name, $plainPassword) {
 
         // Email Settings
         $mail->setFrom('maulikkikani.nitsan@gmail.com', 'NITSAN');
-        $mail->addAddress('maulikkikani.nitsan@gmail.com','maulik' );
+        $mail->addAddress($email,$name );
         $mail->Subject = 'Welcome to Our Company!';
         $mail->isHTML(true);
         $mail->Body = "

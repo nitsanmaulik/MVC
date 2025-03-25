@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("registerEmployeeForm");
+    const registrationbutton = document.getElementById('registrationbutton');
+
 
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
@@ -55,9 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
     qualificationInput.addEventListener("input", validateQualification);
     passwordInput.addEventListener("input", validatePassword);
 
+    
+
     form.addEventListener("submit", function (event) {
-        if (!validateName() || !validateEmail() || !validatePhone() || !validateQualification() || !validatePassword()) {
-            event.preventDefault();
+        if (!validateName() || !validateEmail() || !validatePassword() || !validatePhone() || !validateQualification()) {
+            alert("Please fill out all fields correctly before submitting.");
+            event.preventDefault(); // Prevent form submission
+        } else {
+            alert("Congratulations! Your registration was successful.");
         }
     });
 });

@@ -83,15 +83,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
     }
 
+    // Add event listeners to trigger validation on input
     nameInput.addEventListener("input", validateName);
     emailInput.addEventListener("input", validateEmail);
     passwordInput.addEventListener("input", validatePassword);
     phoneInput.addEventListener("input", validatePhone);
     qualificationInput.addEventListener("input", validateQualification);
 
+    // Form submit event
     form.addEventListener("submit", function (event) {
         if (!validateName() || !validateEmail() || !validatePassword() || !validatePhone() || !validateQualification()) {
-            event.preventDefault();
+            alert("Please fill out all fields correctly before submitting.");
+            event.preventDefault(); // Prevent form submission
+        } else {
+            alert("Congratulations! Your registration was successful.");
         }
     });
 });

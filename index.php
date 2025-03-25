@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="file" class="form-control" name="photo" accept="image/*">
             </div>
 
-            <button type="submit" class="btn btn-primary w-100" onclick="return confirm('congratulations your Register has done successfull!!');">Register</button>
+            <button type="submit" class="btn btn-primary w-100"  id="registrationbutton">Register</button>
         </form>
     </div>
     <script src="../Assets/JS/validation.js"></script>

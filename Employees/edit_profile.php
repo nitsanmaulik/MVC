@@ -69,8 +69,8 @@ $conn->close();
 <html lang="en">
 <head>
     <title>Edit Profile</title>
+    <link rel="stylesheet" href="../Assets/CSS/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Assets/CSS/style.css">
 </head>
 <body>
     <div class="container mt-5">
@@ -106,7 +106,7 @@ $conn->close();
                 <label class="form-label">New Password (Optional)</label>
                 <input type="password" class="form-control" name="password" placeholder="Enter new password">
             </div>
-            <button type="submit" class="btn btn-primary w-100" onclick="return confirm('your profile updated successfully!!');">Update Profile</button>
+            <button type="submit" class="btn btn-primary w-100">Update Profile</button>
             <a href="<?php echo ($role === 'team_leader') ? 'team_leader_dashboard.php' : 'employee_dashboard.php'; ?>" class="btn btn-secondary w-100 mt-2">Cancel</a>
         </form>
     </div>

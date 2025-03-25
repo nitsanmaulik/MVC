@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", function (event) {
         if (!validateEmail() || !validatePassword()) {
+            alert("Please fill out all fields correctly before submitting.");
             event.preventDefault();
         }
     });

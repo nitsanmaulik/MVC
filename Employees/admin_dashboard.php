@@ -127,7 +127,7 @@ $tasks = $conn->query("
                             <small class="text-danger" id="photoError"></small>
                         </div>
 
-                        <button type="submit" class="btn btn-success w-100" onclick="return confirm('congratulations your Register has done successfull!!');">Register Employee</button>
+                        <button type="submit" class="btn btn-success w-100">Register Employee</button>
                     </form>
                 </div>
             </div>

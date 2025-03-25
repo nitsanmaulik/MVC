@@ -60,7 +60,7 @@ $myTasks = $conn->query("
 
     <div class="container mt-4">
         <div class="container">
-            <h2><img src="../<?php echo $_SESSION['photo'] ?>" alt="profile photo" class="rounded-circle" width="100">
+            <h2><img src="<?php echo $_SESSION['photo'] ?>" alt="profile photo" class="rounded-circle" width="100">
             Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?> (Team Leader)</h2>
         </div>
         <!-- Assign Task Form -->
